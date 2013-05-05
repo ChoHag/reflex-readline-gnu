@@ -1,0 +1,22 @@
+#!/usr/bin/perl
+
+use 5.14.0;
+use lib qw(lib);
+use MooseX::Declare;
+
+class App {
+  extends 'Reflex::ReadLine::Gnu';
+
+  method on_line ($line) {
+    $self->hide;
+    say 'got ', $line->line;
+    $self->show;
+  }
+  
+  method on_eof {
+    say '-eof-';
+  }
+}
+
+my $x = new App;
+Reflex->run_all;
