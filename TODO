@@ -1,0 +1,3 @@
+Messes up the terminal, but only if you quit cleanly.
+ - Run stty sane to restore sanity
+
