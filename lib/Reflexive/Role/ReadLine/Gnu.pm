@@ -1,9 +1,9 @@
-package Reflex::Role::ReadLine::Gnu;
+package Reflexive::Role::ReadLine::Gnu;
 
 use Reflex::Role;
 use Reflex::Timeout;
 use Reflex::Callbacks qw/cb_coderef/;
-use Reflex::Event::Line;
+use Reflexive::Event::ReadLine;
 use Reflex::Event::EOF;
 
 use Scalar::Util qw(weaken);
@@ -74,7 +74,7 @@ role {
       my ($cb, $event);
       if (defined $line) {
 	$cb = $cb_line;
-	$event = Reflex::Event::Line->new(
+	$event = Reflexive::Event::ReadLine->new(
 	  _emitters => [ $self ],
 	  line => $line,
 	);
@@ -85,7 +85,8 @@ role {
 	);
 	$self->$method_stop;
       }
-      $POE::Kernel::poe_kernel->yield(
+      POE::Kernel->post(
+	$self->session_id,
 	'call_gate_method',
 	$self, $cb, $event
       );

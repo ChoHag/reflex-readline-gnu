@@ -5,7 +5,7 @@ use lib qw(lib);
 use MooseX::Declare;
 
 class App {
-  extends 'Reflex::ReadLine::Gnu';
+  extends 'Reflexive::ReadLine::Gnu';
 
   method on_line ($line) {
     $self->hide;
@@ -14,7 +14,9 @@ class App {
   }
   
   method on_eof {
+    $self->hide;
     say '-eof-';
+    $self->show;
   }
 }
 

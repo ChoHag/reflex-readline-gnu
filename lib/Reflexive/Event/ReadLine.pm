@@ -1,4 +1,4 @@
-package Reflex::Event::Line;
+package Reflexive::Event::ReadLine;
 
 use Moose;
 extends 'Reflex::Event';
