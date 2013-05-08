@@ -98,8 +98,7 @@ role {
   sub DEMOLISH {}
   before DEMOLISH => sub {
     my $self = shift;
-    $self->$method_stop();
-    $self->callback_handler_remove;
+    $self->$_rl->callback_handler_remove;
   };
 
   has $_rl_saved_point => (
