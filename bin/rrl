@@ -5,18 +5,19 @@ use lib qw(lib);
 use MooseX::Declare;
 
 class App {
-  extends 'Reflexive::ReadLine::Gnu';
+  extends 'Reflexive::StreamLine';
 
   method on_line ($line) {
-    $self->hide;
-    say 'got ', $line->line;
-    $self->show;
+    $self->say("Got " . $line->line);
+
+    $self->pause;
+    say "Now saying things normally.";
+    $self->resume;
   }
   
   method on_eof {
-    $self->hide;
-    say '-eof-';
-    $self->show;
+    say "Done.";
+    $self->stop;
   }
 }
 
